@@ -2,13 +2,14 @@
 
 namespace TomatoPHP\FilamentMediaManager\Resources;
 
+use BackedEnum;
 use Filament\Facades\Filament;
 use TomatoPHP\FilamentMediaManager\Models\Folder;
 use TomatoPHP\FilamentMediaManager\Resources\MediaResource\Pages;
 use TomatoPHP\FilamentMediaManager\Resources\MediaResource\RelationManagers;
 use TomatoPHP\FilamentMediaManager\Models\Media;
+use Filament\Schemas\Schema;
 use Filament\Forms;
-use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -19,7 +20,7 @@ class MediaResource extends Resource
 {
 
     protected static bool $isScopedToTenant = false;
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static string | BackedEnum | null $navigationIcon = 'heroicon-o-rectangle-stack';
 
     protected static bool $shouldRegisterNavigation = false;
 
@@ -46,7 +47,7 @@ class MediaResource extends Resource
         self::$breadcrumb = $breadcrumb;
     }
 
-    public static function form(Form $form): Form
+    public static function form(Schema $form): Schema
     {
         return $form;
     }
